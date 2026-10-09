@@ -1,0 +1,46 @@
+name: Update VN Image List
+
+on:
+  push:
+    paths:
+      - "assets/vn/**"
+      - ".github/workflows/update-vn-images.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create VN image manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          folder = Path("assets/vn")
+          allowed = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
+
+          images = sorted(
+              p.name for p in folder.iterdir()
+              if p.is_file() and p.suffix.lower() in allowed
+              and p.name != "manifest.json"
+          )
+
+          (folder / "manifest.json").write_text(
+              json.dumps(images, ensure_ascii=False, indent=2) + "\n"
+          )
+          PY
+
+      - name: Commit updated manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/vn/manifest.json
+          git diff --cached --quiet || git commit -m "Update VN image manifest"
+          git push
