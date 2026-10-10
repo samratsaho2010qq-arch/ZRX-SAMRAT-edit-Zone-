@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samratsaho2010qq-arch.github.io/ZRX-SAMRAT-edit-Zone-/sitemap.xml
