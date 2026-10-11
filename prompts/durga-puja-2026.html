@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Durga Puja Photo Editing Prompt</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #171323;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 22px;
+      background: #29203b;
+      border: 1px solid #e8a64a;
+      border-radius: 16px;
+    }
+    h1 { color: #ffca72; }
+    .tag { color: #ffb6c1; }
+    .prompt {
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+    button {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #e8a64a;
+      color: #20152b;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="tag"> FESTIVAL SPECIAL • PHOTO EDITING</p>
+    <h1>Durga Puja Pandal Portrait</h1>
+    <p>নিজের ছবি ব্যবহার করে উৎসবের সুন্দর পোর্ট্রেট তৈরি করার Prompt।</p>
+    <p class="prompt" id="prompt">Create a highly realistic cinematic Durga Puja portrait using my uploaded photo as the main subject. Preserve my original facial identity, facial features, hairstyle and natural skin tone. Dress me in an elegant white kurta with a red embroidered uttariya. Place me respectfully in front of a beautifully decorated Durga Puja pandal with a magnificent Maa Durga idol, golden lights, red flowers, warm bokeh and soft festive haze. Use professional DSLR photography, realistic textures, sharp facial focus, rich red and gold color grading, dramatic yet natural lighting, and a premium editorial look. Make the final image photorealistic, vertical 9:16, high resolution. Do not change my identity or add extra fingers or distorted facial features.</p>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('prompt').innerText).then(()=>alert('Prompt copied!'))">Copy Prompt</button>
+  </div>
+</body>
+</html>
