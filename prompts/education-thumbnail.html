@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Educational YouTube Thumbnail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.7;
+      background: #f4f7fb;
+      color: #202938;
+    }
+    main {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+    }
+    h1 { color: #1746a2; }
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      box-sizing: border-box;
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 12px;
+      padding: 12px 18px;
+      background: #1746a2;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>🎓 AI Educational YouTube Thumbnail</h1>
+  <p>শিক্ষামূলক YouTube Thumbnail তৈরির জন্য নিচের English prompt ব্যবহার করুন। নিজের ছবি ও বিষয়ের তথ্য যোগ করে prompt-টি AI image generator-এ দিন।</p>
+
+  <textarea id="prompt" readonly>Design a professional, eye-catching 16:9 YouTube educational thumbnail.
+
+TEACHER PHOTO: Use the teacher's uploaded photo as the main subject. Preserve the teacher's real identity, facial features, skin tone, and natural appearance. Do not replace the person with a different face.
+
+VIDEO DETAILS:
+Subject: [Enter subject]
+Topic or chapter: [Enter topic/chapter]
+Class or grade: [Enter class]
+Teacher name: [Enter teacher name]
+Channel name: [Enter channel name]
+Main thumbnail text in Bengali: [Enter Bengali headline]
+Optional extra text: [Enter extra text or leave blank]
+
+BACKGROUND:
+Create a visually rich background specifically related to the selected subject and chapter. Use relevant educational elements, diagrams, books, scientific illustrations, maps, mathematical symbols, or other subject-related visuals as appropriate.
+
+TEXT AND LAYOUT:
+Display the main headline in Bengali exactly as provided. Use large, bold, highly readable Bengali typography with strong contrast. Arrange the teacher photo and text in a balanced composition. Keep important text away from the edges.
+
+STYLE:
+Modern, colorful, polished educational YouTube thumbnail, clear visual hierarchy, professional lighting, sharp details, attractive colors, and excellent readability on mobile screens.
+
+IMPORTANT:
+Preserve the teacher's identity. Do not invent extra words, misspell Bengali text, distort the face, or clutter the design. Output a 16:9 thumbnail.</textarea>
+
+  <button onclick="copyPrompt()">Copy English Prompt</button>
+  <p id="status"></p>
+</main>
+
+<script>
+function copyPrompt() {
+  const prompt = document.getElementById("prompt");
+  prompt.select();
+  prompt.setSelectionRange(0, 99999);
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(prompt.value).then(() => {
+      document.getElementById("status").textContent = "Prompt copied!";
+    });
+  } else {
+    const success = document.execCommand("copy");
+    document.getElementById("status").textContent =
+      success ? "Prompt copied!" : "Prompt নির্বাচন করে Copy করুন।";
+  }
+}
+</script>
+</body>
+</html>
