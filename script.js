@@ -236,7 +236,7 @@ async function loadPhotoCodesGallery() {
 
   const gallery = document.createElement('div');
   gallery.style.cssText =
-    'display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;';
+  'display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),300px));justify-content:center;gap:16px;width:100%;box-sizing:border-box;';
 
   const status = document.createElement('p');
   status.textContent = 'Loading photo codes...';
