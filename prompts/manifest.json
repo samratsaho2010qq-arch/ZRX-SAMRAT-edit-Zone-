@@ -5,5 +5,11 @@
 "description": "নিজের ছবি ও বিষয়ের তথ্য দিয়ে শিক্ষামূলক YouTube Thumbnail তৈরি করুন।",
 "file": "education-thumbnail.html",
 "image": "assets/file_00000000f4a48211bbe0f733f3ba29fa.png"
+},
+{
+"title": "New Photo Editing Prompt",
+"category": "Photo Editing • AI Prompts",
+"description": "নতুন Photo Editing Prompt-এর উদাহরণ ছবি।",
+"image": "prompts/file_00000000c72882119e54b5f3fc54f322.png"
 }
 ]
