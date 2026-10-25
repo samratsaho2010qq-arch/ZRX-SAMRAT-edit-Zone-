@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinematic Forest Portrait | ZRX SAMRAT Edit Zone</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #100e1c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 { color: #ffc857; }
+    .panel {
+      background: #201b32;
+      border: 1px solid #55436f;
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    textarea {
+      width: 100%;
+      min-height: 210px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #8c75aa;
+      background: #100e1c;
+      color: white;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    button, .back {
+      display: inline-block;
+      padding: 12px 18px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #ffc857;
+      color: #20152b;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #status { color: #b8f7c5; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Cinematic Forest Portrait</h1>
+    <p>নিজের ছবিকে সবুজ বন, ঝরনা ও সিনেম্যাটিক আলো দিয়ে নতুন রূপ দিন।</p>
+
+    <section class="panel">
+      <h2>Prompt Image</h2>
+      <img
+        src="../file_00000000c72882119e54b5f3fc54f322.png"
+        alt="Cinematic Forest Portrait AI prompt"
+      >
+    </section>
+
+    <section class="panel">
+      <h2>AI Photo Editing Prompt</h2>
+      <p>নিচের Prompt কপি করে তোমার পছন্দের AI photo editor-এ ব্যবহার করো।</p>
+
+      <textarea id="prompt" readonly>Create a cinematic, high-quality portrait using the uploaded person's photo. Place the subject in a lush green forest beside a beautiful waterfall, with soft mist, natural sunlight filtering through the trees, realistic skin texture, detailed surroundings, professional color grading, sharp focus on the subject, and a premium editorial photography style. Preserve the person's recognizable facial features.</textarea>
+
+      <button type="button" onclick="copyPrompt()">Copy Prompt</button>
+      <p id="status" aria-live="polite"></p>
+    </section>
+
+    <a class="back" href="../index.html">← Back to Home</a>
+  </main>
+
+  <script>
+    function copyPrompt() {
+      const field = document.getElementById("prompt");
+      const status = document.getElementById("status");
+
+      field.select();
+      field.setSelectionRange(0, field.value.length);
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(field.value)
+          .then(() => status.textContent = "Prompt copied!")
+          .catch(() => fallbackCopy(field, status));
+      } else {
+        fallbackCopy(field, status);
+      }
+    }
+
+    function fallbackCopy(field, status) {
+      try {
+        const success = document.execCommand("copy");
+        status.textContent = success
+          ? "Prompt copied!"
+          : "লেখাটি সিলেক্ট করে Copy করো।";
+      } catch (error) {
+        status.textContent = "লেখাটি সিলেক্ট করে Copy করো।";
+      }
+    }
+  </script>
+</body>
+</html>
