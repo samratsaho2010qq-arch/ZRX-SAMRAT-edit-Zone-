@@ -7,9 +7,10 @@
 "image": "assets/file_00000000f4a48211bbe0f733f3ba29fa.png"
 },
 {
-"title": "New Photo Editing Prompt",
+"title": "Cinematic Forest Portrait",
 "category": "Photo Editing • AI Prompts",
-"description": "নতুন Photo Editing Prompt-এর উদাহরণ ছবি।",
-"image": "prompts/file_00000000c72882119e54b5f3fc54f322.png"
+"description": "সবুজ বন, ঝরনা ও সিনেম্যাটিক আলো দিয়ে নিজের ছবিকে আকর্ষণীয় পোর্ট্রেটে রূপ দিন।",
+"file": "forest-portrait.html",
+"image": "./file_00000000c72882119e54b5f3fc54f322.png"
 }
 ]
