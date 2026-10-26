@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinematic Movie Poster | ZRX SAMRAT Edit Zone</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #100e1c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+    main { max-width: 720px; margin: auto; }
+    h1 { color: #ffc857; }
+    .panel {
+      background: #201b32;
+      border: 1px solid #55436f;
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    textarea {
+      width: 100%;
+      min-height: 250px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #100e1c;
+      color: white;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    button, .back {
+      display: inline-block;
+      padding: 12px 18px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #ffc857;
+      color: #20152b;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #status { color: #b8f7c5; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Cinematic Movie Poster</h1>
+    <p>নিজের ছবিকে নীল আলো ও সিনেমার পোস্টারের মতো dramatic লুকে সাজাও।</p>
+
+    <section class="panel">
+      <h2>Example Image</h2>
+      <img src="cinematic-movie-poster.png"
+           alt="Cinematic Movie Poster example">
+    </section>
+
+    <section class="panel">
+      <h2>AI Photo Editing Prompt</h2>
+      <textarea id="prompt" readonly>Create a dramatic cinematic movie poster using the uploaded person's photo. Place the subject in a dark, atmospheric setting with deep blue and teal lighting, soft glowing highlights, realistic shadows, subtle haze, and a premium film-poster composition. Add a large, expressive close-up of a woman's eyes across the upper part of the poster, with the main subject positioned below. Blend both elements artistically with smooth transitions, detailed textures, realistic photography, and professional color grading. Preserve the uploaded person's recognizable facial features. Do not add unwanted text or watermarks.</textarea>
+      <button onclick="copyPrompt()">Copy Prompt</button>
+      <p id="status" aria-live="polite"></p>
+    </section>
+
+    <a class="back" href="../index.html">← Back to Home</a>
+  </main>
+
+  <script>
+    function copyPrompt() {
+      const field = document.getElementById("prompt");
+      const status = document.getElementById("status");
+      field.select();
+      field.setSelectionRange(0, field.value.length);
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(field.value)
+          .then(() => status.textContent = "Prompt copied!")
+          .catch(() => fallbackCopy(field, status));
+      } else {
+        fallbackCopy(field, status);
+      }
+    }
+
+    function fallbackCopy(field, status) {
+      try {
+        status.textContent = document.execCommand("copy")
+          ? "Prompt copied!"
+          : "লেখাটি সিলেক্ট করে Copy করো।";
+      } catch (error) {
+        status.textContent = "লেখাটি সিলেক্ট করে Copy করো।";
+      }
+    }
+  </script>
+</body>
+</html>
