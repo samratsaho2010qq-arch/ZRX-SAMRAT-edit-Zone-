@@ -1,1 +1,107 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1980s Retro Portrait | ZRX SAMRAT Edit Zone</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #100e1c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+    main { max-width: 720px; margin: auto; }
+    h1 { color: #ffc857; }
+    .panel {
+      background: #201b32;
+      border: 1px solid #55436f;
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    textarea {
+      width: 100%;
+      min-height: 230px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #100e1c;
+      color: white;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    button, .back {
+      display: inline-block;
+      padding: 12px 18px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #ffc857;
+      color: #20152b;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #status { color: #b8f7c5; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>1980s Retro Portrait</h1>
+    <p>নিজের ছবিকে vintage 1980s retro ফটোগ্রাফির স্টাইলে সাজাও।</p>
+
+    <section class="panel">
+      <h2>Example Image</h2>
+      <img src="1980s-retro-portrait.png"
+           alt="1980s Retro Portrait example">
+    </section>
+
+    <section class="panel">
+      <h2>AI Photo Editing Prompt</h2>
+      <textarea id="prompt" readonly>Create a stylish 1980s retro portrait using the uploaded person's photo. Add classic vintage fashion, dark sunglasses, dramatic studio lighting, subtle film grain, rich shadows, authentic analog film colors, a clean editorial composition, and a bold nostalgic mood. Preserve the person's recognizable facial features and natural identity. Create a high-quality, realistic photograph.</textarea>
+      <button onclick="copyPrompt()">Copy Prompt</button>
+      <p id="status" aria-live="polite"></p>
+    </section>
+
+    <a class="back" href="../index.html">← Back to Home</a>
+  </main>
+
+  <script>
+    function copyPrompt() {
+      const field = document.getElementById("prompt");
+      const status = document.getElementById("status");
+      field.select();
+      field.setSelectionRange(0, field.value.length);
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(field.value)
+          .then(() => status.textContent = "Prompt copied!")
+          .catch(() => fallbackCopy(field, status));
+      } else {
+        fallbackCopy(field, status);
+      }
+    }
+
+    function fallbackCopy(field, status) {
+      try {
+        status.textContent = document.execCommand("copy")
+          ? "Prompt copied!"
+          : "লেখাটি সিলেক্ট করে Copy করো।";
+      } catch (error) {
+        status.textContent = "লেখাটি সিলেক্ট করে Copy করো।";
+      }
+    }
+  </script>
+</body>
+</html>
