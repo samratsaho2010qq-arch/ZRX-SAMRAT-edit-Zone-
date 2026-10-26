@@ -1,16 +1,30 @@
 [
-{
-"title": "AI Educational YouTube Thumbnail",
-"category": "YouTube Thumbnail • Education",
-"description": "নিজের ছবি ও বিষয়ের তথ্য দিয়ে শিক্ষামূলক YouTube Thumbnail তৈরি করুন।",
-"file": "education-thumbnail.html",
-"image": "assets/file_00000000f4a48211bbe0f733f3ba29fa.png"
-},
-{
-"title": "Cinematic Forest Portrait",
-"category": "Photo Editing • AI Prompts",
-"description": "সবুজ বন, ঝরনা ও সিনেম্যাটিক আলো দিয়ে নিজের ছবিকে আকর্ষণীয় পোর্ট্রেটে রূপ দিন।",
-"file": "forest-portrait.html",
-"image": "./file_00000000c72882119e54b5f3fc54f322.png"
-}
+  {
+    "title": "AI Educational YouTube Thumbnail",
+    "category": "YouTube Thumbnail • Education",
+    "description": "নিজের ছবি ও বিষয়ের তথ্য দিয়ে শিক্ষামূলক YouTube Thumbnail তৈরি করুন।",
+    "file": "education-thumbnail.html",
+    "image": "assets/file_00000000f4a48211bbe0f733f3ba29fa.png"
+  },
+  {
+    "title": "1980s Retro Portrait",
+    "category": "Instagram Photo Editing • Retro",
+    "description": "নিজের ছবিকে vintage retro স্টাইলে রূপান্তর করুন।",
+    "file": "1980s-retro-portrait.html",
+    "image": "prompts/1980s-retro-portrait.png"
+  },
+  {
+    "title": "Cinematic Movie Poster",
+    "category": "Instagram Photo Editing • Cinematic",
+    "description": "নিজের ছবিকে নীল আলো ও cinematic movie poster স্টাইলে সাজান।",
+    "file": "cinematic-movie-poster.html",
+    "image": "prompts/cinematic-movie-poster.png"
+  },
+  {
+    "title": "Cinematic Forest Portrait",
+    "category": "Photo Editing • AI Prompts",
+    "description": "সবুজ বন, ঝরনা ও সিনেম্যাটিক আলো দিয়ে নিজের ছবিকে আকর্ষণীয় পোর্ট্রেটে রূপ দিন।",
+    "file": "forest-portrait.html",
+    "image": "./file_00000000c72882119e54b5f3fc54f322.png"
+  }
 ]
