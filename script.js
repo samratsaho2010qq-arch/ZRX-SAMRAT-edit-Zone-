@@ -221,7 +221,7 @@ async function loadPhotoCodesGallery() {
   const owner = 'samratsaho2010qq-arch';
 
   // Correct repository name
-  const repo = 'ZRX-SAMRAT-edit-Zone';
+  const repo = 'ZRX-SAMRAT-edit-Zone-';
 
   const folder = 'photo-codes/images';
 
