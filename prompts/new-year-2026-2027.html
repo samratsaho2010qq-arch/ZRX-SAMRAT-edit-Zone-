@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Goodbye 2027 New Beginning | ZRX SAMRAT Edit Zone</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;padding:20px;
+  background:#100e1c;color:#fff;
+  font-family:Arial,sans-serif;line-height:1.7
+}
+main{max-width:720px;margin:auto}
+h1{color:#ffc857;text-align:center}
+.panel{
+  background:#201b32;border:1px solid #55436f;
+  border-radius:16px;padding:18px;margin:18px 0
+}
+img{width:100%;height:auto;border-radius:12px;display:block}
+textarea{
+  width:100%;min-height:300px;padding:14px;
+  border-radius:10px;background:#100e1c;
+  color:white;font-size:14px;line-height:1.6;
+  resize:vertical
+}
+button,.back{
+  display:inline-block;padding:12px 18px;
+  margin-top:12px;border:0;border-radius:9px;
+  background:#ffc857;color:#20152b;
+  font-size:16px;font-weight:bold;
+  text-decoration:none;cursor:pointer
+}
+.girl{background:#e6a4ff}
+#status{color:#b8f7c5}
+</style>
+</head>
+
+<body>
+<main>
+
+<h1>🎆 2026 Goodbye | 2027 New Beginning</h1>
+<p style="text-align:center">
+Choose your photo editing prompt and create your New Year transformation!
+</p>
+
+<section class="panel">
+<h2>Example Image</h2>
+<img src="new-year-2026-2027.png"
+alt="2026 Goodbye 2027 New Beginning AI Photo Editing Example">
+</section>
+
+<section class="panel">
+<h2>👨 Boy Photo Editing Prompt</h2>
+<textarea id="boyPrompt" readonly></textarea>
+<button onclick="copyPrompt('boyPrompt','boyStatus')">
+Copy Boy Prompt
+</button>
+<p id="boyStatus" aria-live="polite"></p>
+</section>
+
+<section class="panel">
+<h2>👩 Girl Photo Editing Prompt</h2>
+<textarea id="girlPrompt" readonly></textarea>
+<button class="girl" onclick="copyPrompt('girlPrompt','girlStatus')">
+Copy Girl Prompt
+</button>
+<p id="girlStatus" aria-live="polite"></p>
+</section>
+
+<a class="back" href="../index.html">← Back to Home</a>
+
+</main>
+
+<script>
+const boyPrompt = `MASTER IMAGE GENERATION PROMPT V2.0
+2026 GOODBYE | 2027 NEW BEGINNING
+LUXURY FASHION × CINEMATIC HOLLYWOOD POSTER
+
+Create an ultra-realistic, premium cinematic New Year transformation poster using the uploaded character reference image as the ONLY identity reference.
+
+1. STRICT CHARACTER IDENTITY LOCK
+Preserve the exact facial identity, eyes, nose, lips, jawline, hairstyle, hairline, beard, moustache and natural skin tone. Preserve authentic age and natural appearance. No face replacement, beautification or identity modification.
+
+2. FIXED LUXURY OUTFIT — DARK EDITORIAL STYLE
+Dress the character in:
+- Dark charcoal-black suede bomber jacket.
+- Premium black fitted high-neck turtleneck.
+- Tailored dark grey trousers.
+- Premium black leather Chelsea boots.
+- Minimalist metallic luxury wristwatch.
+
+Style: Quiet Luxury, Old Money Fashion, Modern Masculine Editorial.
+
+3. CHARACTER POSE
+Position the character on the RIGHT side.
+- Confident three-quarter standing pose.
+- One leg slightly forward.
+- Body turned approximately 20 degrees towards camera.
+- One hand inside trouser pocket.
+- Other hand adjusting wristwatch.
+- Relaxed shoulders and determined expression.
+- Eyes looking directly into camera.
+- Show full body from head to toe.
+
+4. CINEMATIC ENVIRONMENT
+Create an open agricultural field during a golden-orange sunset.
+
+LEFT SIDE — 2026 GOODBYE:
+- Vintage brown velvet sofa engulfed in realistic orange flames.
+- Thick dark smoke rising into the sky.
+- Glowing embers and sparks.
+- Dramatic dark atmosphere.
+
+RIGHT SIDE — 2027 NEW BEGINNING:
+- Beautiful golden-orange sunset.
+- Dramatic clouds and warm sunlight.
+- Natural agricultural field and distant trees.
+- Golden rim lighting around the character.
+
+5. FIXED TEXT AND EMOJIS
+
+LEFT SECTION:
+Display a large realistic RED BROKEN HEART EMOJI.
+
+Directly underneath:
+2026
+
+Below the year, display exactly:
+Thank you for all the lessons.
+
+RIGHT SECTION:
+Display a realistic FLYING MONEY WITH WINGS EMOJI.
+
+Directly underneath:
+2027
+
+Below the year, display exactly:
+I am ready
+
+Use extra-bold white condensed typography for years and elegant bright-yellow serif typography for sentences. Do not misspell or distort text.
+
+6. CINEMATIC LIGHTING
+- Premium Hollywood cinematic color grading.
+- Deep charcoal shadows.
+- Rich golden highlights.
+- Dramatic orange fire illumination.
+- Realistic volumetric smoke.
+- Natural golden-hour sunlight.
+- Subtle film grain.
+- Professional luxury editorial photography.
+
+7. COMPOSITION
+- Vertical 4:5 poster.
+- Burning sofa on the left.
+- Character on the right.
+- 2026 in upper-left.
+- 2027 in upper-right.
+- Keep all typography readable.
+- Do not crop the character's head or feet.
+
+8. SIGNATURE BRANDING
+Add exact text:
+Explore AI Tech
+
+Placement: Bottom-right corner.
+Elegant handwritten champagne-gold signature.
+No additional logos or watermarks.
+
+9. FINAL IMAGE QUALITY
+- Aspect ratio 4:5.
+- Resolution 2048 × 2560 or higher.
+- Ultra-photorealistic.
+- Premium cinematic poster aesthetic.
+- Realistic fire, smoke and textures.
+- Natural facial details and accurate anatomy.
+- Sharp typography.
+- No borders or random text.
+
+FINAL CREATIVE DIRECTION:
+2026 represents struggles, failures, heartbreaks, sacrifices and lessons.
+2027 represents confidence, ambition, personal growth, success and a fearless mindset.
+
+Create an emotionally powerful luxury fashion campaign blended with an epic Hollywood New Year movie poster. Prioritize exact character identity, cinematic realism, perfect typography and visual storytelling.`;
+
+const girlPrompt = `MASTER IMAGE GENERATION PROMPT — FEMALE VERSION V2.0
+2026 GOODBYE | 2027 NEW BEGINNING
+LUXURY FEMININE FASHION × CINEMATIC HOLLYWOOD POSTER
+
+Create an ultra-realistic, premium cinematic New Year transformation poster using the uploaded female character reference image as the ONLY identity reference.
+
+1. STRICT FEMALE CHARACTER IDENTITY LOCK
+Preserve the exact facial identity, eyes, eyebrows, nose, lips, jawline, hairstyle, hairline and natural skin tone. Preserve original hair length, texture, authentic age and natural appearance. No face replacement, beautification or identity modification.
+
+2. FIXED LUXURY OUTFIT — FEMININE DARK EDITORIAL STYLE
+Dress the character in:
+- Elegant tailored black longline wool coat.
+- Premium fitted black high-neck turtleneck.
+- High-waisted charcoal-black wide-leg trousers.
+- Black pointed-toe leather ankle boots with block heels.
+- Minimalist metallic wristwatch.
+- Small elegant gold hoop earrings.
+- Delicate minimalist gold necklace.
+
+Style: Quiet Luxury, Old Money Fashion, Modern Feminine Elegance.
+
+3. CHARACTER POSE
+Position the female character on the RIGHT side.
+- Confident three-quarter standing pose.
+- One leg slightly forward.
+- Body turned approximately 20 degrees towards camera.
+- One hand inside trouser pocket.
+- Other hand adjusting wristwatch.
+- Elegant upright posture.
+- Subtle confident smile.
+- Eyes looking directly into camera.
+- Natural hair movement.
+- Show full body from head to toe.
+
+4. CINEMATIC ENVIRONMENT
+Create an open agricultural field during a golden-orange sunset.
+
+LEFT SIDE — 2026 GOODBYE:
+- Vintage brown velvet sofa engulfed in realistic orange flames.
+- Thick dark smoke rising into the sky.
+- Glowing embers and sparks.
+- Dramatic dark atmosphere.
+
+RIGHT SIDE — 2027 NEW BEGINNING:
+- Beautiful golden-orange sunset.
+- Dramatic clouds and warm sunlight.
+- Natural agricultural field and distant trees.
+- Golden rim lighting around the female character.
+- Warm highlights on face, hair and outfit.
+
+5. FIXED TEXT AND EMOJIS
+
+LEFT SECTION:
+Display a large realistic RED BROKEN HEART EMOJI.
+
+Directly underneath:
+2026
+
+Below the year, display exactly:
+Thank you for all the lessons.
+
+RIGHT SECTION:
+Display a realistic FLYING MONEY WITH WINGS EMOJI.
+
+Directly underneath:
+2027
+
+Below the year, display exactly:
+I am ready
+
+Use extra-bold white condensed typography for years and elegant bright-yellow serif typography for sentences. Do not misspell or distort text.
+
+6. CINEMATIC LIGHTING
+- Premium Hollywood cinematic color grading.
+- Deep charcoal shadows.
+- Rich golden highlights.
+- Dramatic orange fire illumination.
+- Realistic volumetric smoke.
+- Natural golden-hour sunlight.
+- Subtle film grain.
+- Professional luxury women's fashion editorial photography.
+- Natural skin texture and facial details.
+
+7. COMPOSITION
+- Vertical 4:5 poster.
+- Burning sofa on the left.
+- Female character on the right.
+- 2026 in upper-left.
+- 2027 in upper-right.
+- Keep all typography readable.
+- Do not crop the character's head or feet.
+- Balanced premium fashion-editorial composition.
+
+8. SIGNATURE BRANDING
+Add exact text:
+Explore AI Tech
+
+Placement: Bottom-right corner.
+Elegant handwritten champagne-gold signature.
+Spelling must be exactly Explore AI Tech.
+No additional logos or watermarks.
+
+9. FINAL IMAGE QUALITY
+- Aspect ratio 4:5.
+- Resolution 2048 × 2560 or higher.
+- Ultra-photorealistic.
+- Premium cinematic poster aesthetic.
+- Realistic fire, smoke and textures.
+- Natural facial details and accurate anatomy.
+- Sharp typography.
+- No borders or random text.
+
+FINAL CREATIVE DIRECTION:
+2026 represents struggles, failures, heartbreaks, sacrifices and lessons.
+2027 represents confidence, ambition, personal growth, success, independence and a fearless mindset.
+
+Create an emotionally powerful luxury women's fashion campaign blended with an epic Hollywood New Year movie poster. Prioritize exact female identity, elegant fashion styling, cinematic realism, perfect typography and visual storytelling.`;
+
+document.getElementById("boyPrompt").value = boyPrompt;
+document.getElementById("girlPrompt").value = girlPrompt;
+
+function copyPrompt(fieldId,statusId){
+  const field=document.getElementById(fieldId);
+  const status=document.getElementById(statusId);
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(field.value)
+    .then(()=>status.textContent="✓ Prompt copied successfully!")
+    .catch(()=>fallbackCopy(field,status));
+  }else{
+    fallbackCopy(field,status);
+  }
+}
+
+function fallbackCopy(field,status){
+  field.focus();
+  field.select();
+  field.setSelectionRange(0,field.value.length);
+  status.textContent=document.execCommand("copy")
+    ?"✓ Prompt copied successfully!"
+    :"লেখাটি সিলেক্ট করে Copy করো।";
+}
+</script>
+
+</body>
+  </html>
