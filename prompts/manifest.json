@@ -19,12 +19,6 @@
     "description": "নিজের ছবিকে নীল আলো ও cinematic movie poster স্টাইলে সাজান।",
     "file": "cinematic-movie-poster.html",
     "image": "prompts/cinematic-movie-poster.png"
-  },
-  {
-    "title": "Cinematic Forest Portrait",
-    "category": "Photo Editing • AI Prompts",
-    "description": "সবুজ বন, ঝরনা ও সিনেম্যাটিক আলো দিয়ে নিজের ছবিকে আকর্ষণীয় পোর্ট্রেটে রূপ দিন।",
-    "file": "forest-portrait.html",
-    "image": "./file_00000000c72882119e54b5f3fc54f322.png"
+
   }
 ]
