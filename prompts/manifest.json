@@ -1,3 +1,4 @@
+
 [
   {
     "title": "AI Educational YouTube Thumbnail",
@@ -19,6 +20,12 @@
     "description": "নিজের ছবিকে নীল আলো ও cinematic movie poster স্টাইলে সাজান।",
     "file": "cinematic-movie-poster.html",
     "image": "prompts/cinematic-movie-poster.png"
-
+  },
+  {
+    "title": "2026 Goodbye | 2027 New Beginning",
+    "category": "AI Photo Editing • New Year",
+    "description": "2026 Goodbye ও 2027 New Beginning থিমে Boy এবং Girl—দুটি আলাদা AI Photo Editing Prompt।",
+    "file": "new-year-2026-2027.html",
+    "image": "prompts/new-year-2026-2027.png"
   }
 ]
