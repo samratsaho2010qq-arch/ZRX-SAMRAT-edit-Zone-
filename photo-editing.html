@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Editing Gallery | ZRX SAMRAT</title>
+<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+.gallery-page{max-width:1200px;margin:auto;padding:35px 5%}
+.gallery-page h1{font-size:27px;color:var(--gold)}
+.gallery-page p{color:var(--muted);font-size:13px}
+.gallery-items{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}
+.gallery-card{background:#061321;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gallery-card img{width:100%;height:230px;object-fit:cover;display:block}
+.gallery-card h3{font-size:13px;padding:0 12px}
+.back-home{display:inline-block;margin-top:20px;color:var(--gold);font-weight:800;font-size:12px}
+@media(max-width:700px){.gallery-items{grid-template-columns:1fr 1fr}.gallery-card img{height:160px}}
+@media(max-width:420px){.gallery-items{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+<a class="brand" href="./index.html">
+<img src="./logo.jpg" alt="ZRX SAMRAT Logo">
+<div><strong>ZRX SAMRAT</strong><small>Edit Zone</small></div>
+</a>
+<a class="back-home" href="./index.html">← Back to Home</a>
+</header>
+
+<main class="gallery-page">
+<h1>✦ Photo Editing Gallery</h1>
+<p>Explore all creative photo editing works by ZRX SAMRAT Edit Zone.</p>
+
+<div id="photo-gallery" class="gallery-items">
+<p>Loading photos...</p>
+</div>
+</main>
+
+<footer>
+<div class="footer-brand">
+<span>ZRX SAMRAT <b>Edit Zone</b></span>
+<small>Dream × Edit × Grow</small>
+</div>
+<p>Creative Minds • Better Edits • Bigger Dreams</p>
+</footer>
+
+<script>
+async function loadGallery(){
+const box=document.getElementById("photo-gallery");
+try{
+const response=await fetch("./prompts/gallery-manifest.json?cache="+Date.now());
+if(!response.ok) throw new Error("Manifest not found");
+const items=await response.json();
+box.innerHTML="";
+if(!items.length){
+box.innerHTML="<p>No photo editing images added yet.</p>";
+return;
+}
+items.slice().reverse().forEach(item=>{
+const card=document.createElement("article");
+card.className="gallery-card";
+const img=document.createElement("img");
+img.src=item.image;
+img.alt=item.title||"Photo Editing";
+const title=document.createElement("h3");
+title.textContent=item.title||"Photo Editing";
+card.append(img,title);
+box.appendChild(card);
+});
+}catch(error){
+box.innerHTML="<p>Gallery could not be loaded. Please try again later.</p>";
+}
+}
+loadGallery();
+</script>
+</body>
+</html>
