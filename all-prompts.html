@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All AI Prompts | ZRX SAMRAT Edit Zone</title>
+<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+.page{max-width:1200px;margin:auto;padding:35px 5%}
+.page-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.page h1{font-size:25px;color:var(--gold);margin:0}
+.page-intro{color:var(--muted);font-size:12px}
+.prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:25px}
+.prompt-card{background:#061321;border:1px solid #38204d;border-radius:12px;overflow:hidden}
+.prompt-card img{width:100%;height:210px;object-fit:cover;display:block;background:#091827}
+.prompt-info{padding:14px}
+.prompt-info small{color:var(--purple);font-size:10px}
+.prompt-info h3{font-size:14px;margin:7px 0}
+.prompt-info p{font-size:11px;color:var(--muted)}
+.prompt-link{display:inline-block;color:var(--purple);font-size:11px;font-weight:800;margin-top:8px}
+.home-link{color:var(--gold);font-size:12px;font-weight:800}
+.instagram-button{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:8px;background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5);color:white;font-size:11px;font-weight:800}
+.instagram-button span{font-size:19px}
+.empty{color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:700px){.prompt-grid{grid-template-columns:1fr 1fr}.prompt-card img{height:160px}}
+@media(max-width:420px){.prompt-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+<a class="brand" href="./index.html">
+<img src="./logo.jpg" alt="ZRX SAMRAT Logo">
+<div><strong>ZRX SAMRAT</strong><small>Edit Zone</small></div>
+</a>
+<a class="home-link" href="./index.html">← Home</a>
+</header>
+
+<main class="page">
+<div class="page-heading">
+<h1>✦ All AI Photo Editing Prompts</h1>
+<a class="instagram-button" href="https://www.instagram.com/zrx_samrat_w.b/" target="_blank" rel="noopener">
+<span>◎</span> Instagram
+</a>
+</div>
+
+<p class="page-intro">Explore all AI photo editing prompts — নতুন ও পুরোনো সব এক জায়গায়।</p>
+
+<div id="prompt-list" class="prompt-grid">
+<p class="empty">Loading prompts...</p>
+</div>
+</main>
+
+<footer>
+<div class="footer-brand">
+<span>ZRX SAMRAT <b>Edit Zone</b></span>
+<small>Dream × Edit × Grow</small>
+</div>
+<p>Creative Minds • Better Edits • Bigger Dreams</p>
+</footer>
+
+<script>
+async function loadPrompts(){
+const box=document.getElementById("prompt-list");
+
+try{
+const response=await fetch("./prompts/manifest.json?cache="+Date.now());
+if(!response.ok) throw new Error("Manifest not found");
+
+const items=await response.json();
+box.innerHTML="";
+
+if(!items.length){
+box.innerHTML='<p class="empty">No prompts added yet.</p>';
+return;
+}
+
+items.slice().reverse().forEach(item=>{
+const card=document.createElement("article");
+card.className="prompt-card";
+
+const img=document.createElement("img");
+img.src=item.image.startsWith("assets/") ? "./"+item.image : "./prompts/"+item.image.replace(/^prompts\//,"");
+img.alt=item.title||"AI Prompt";
+img.loading="lazy";
+
+const info=document.createElement("div");
+info.className="prompt-info";
+
+const category=document.createElement("small");
+category.textContent=item.category||"AI Photo Editing";
+
+const title=document.createElement("h3");
+title.textContent=item.title||"AI Photo Prompt";
+
+const description=document.createElement("p");
+description.textContent=item.description||"Explore this creative AI prompt.";
+
+const link=document.createElement("a");
+link.className="prompt-link";
+link.href="./prompts/"+item.file;
+link.textContent="View Prompt →";
+
+info.append(category,title,description,link);
+card.append(img,info);
+box.appendChild(card);
+});
+
+}catch(error){
+box.innerHTML='<p class="empty">Prompts could not be loaded. Please check the manifest.json file.</p>';
+}
+}
+
+loadPrompts();
+</script>
+</body>
+</html>
