@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Photo Editing Codes | ZRX SAMRAT</title>
+<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+.codes-page{max-width:1200px;margin:auto;padding:35px 5%}
+.codes-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.codes-heading h1{font-size:24px;color:var(--gold);margin:0}
+.codes-page>p{font-size:12px;color:var(--muted)}
+.codes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:25px}
+.code-card{background:#061321;border:1px solid #1d3347;border-radius:12px;overflow:hidden}
+.code-card img{width:100%;height:210px;object-fit:contain;background:#02080e;display:block}
+.code-info{padding:13px}
+.code-info h3{font-size:12px;overflow-wrap:anywhere}
+.code-text{font-size:11px;color:var(--gold);overflow-wrap:anywhere}
+.copy-code{width:100%;padding:9px;border:1px solid var(--gold);border-radius:7px;background:#091827;color:var(--gold);font-weight:800;margin-top:8px}
+.home-link{color:var(--gold);font-size:12px;font-weight:800}
+.instagram-button{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:8px;background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5);color:white;font-size:11px;font-weight:800}
+.instagram-button span{font-size:19px}
+.status{font-size:12px;color:var(--muted);padding:15px}
+@media(max-width:700px){.codes-grid{grid-template-columns:1fr 1fr}.code-card img{height:160px}}
+@media(max-width:420px){.codes-grid{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<a class="brand" href="./index.html">
+<img src="./logo.jpg" alt="ZRX SAMRAT Logo">
+<div><strong>ZRX SAMRAT</strong><small>Edit Zone</small></div>
+</a>
+<a class="home-link" href="./index.html">← Home</a>
+</header>
+
+<main class="codes-page">
+
+<div class="codes-heading">
+<h1>✦ All Photo Editing Codes</h1>
+<a class="instagram-button" href="https://www.instagram.com/zrx_samrat_w.b/" target="_blank" rel="noopener">
+<span>◎</span> Instagram
+</a>
+</div>
+
+<p>Explore all Photo Editing Codes. Copy your favourite code and use it!</p>
+
+<div id="codes-grid" class="codes-grid">
+<p class="status">Loading photo editing codes...</p>
+</div>
+
+</main>
+
+<footer>
+<div class="footer-brand">
+<span>ZRX SAMRAT <b>Edit Zone</b></span>
+<small>Dream × Edit × Grow</small>
+</div>
+<p>Creative Minds • Better Edits • Bigger Dreams</p>
+</footer>
+
+<script>
+const owner="samratsaho2010qq-arch";
+const repo="ZRX-SAMRAT-edit-Zone-";
+const folder="photo-codes/images";
+
+async function loadCodes(){
+const box=document.getElementById("codes-grid");
+
+try{
+const url=`https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=main`;
+const response=await fetch(url);
+
+if(!response.ok) throw new Error("Could not load images");
+
+const files=await response.json();
+
+const images=files
+.filter(file=>/\.(png|jpe?g|webp|gif)$/i.test(file.name))
+.sort((a,b)=>b.name.localeCompare(a.name));
+
+box.innerHTML="";
+
+if(!images.length){
+box.innerHTML='<p class="status">No photo editing codes found.</p>';
+return;
+}
+
+images.forEach(file=>{
+const code="/"+file.name.toUpperCase();
+
+const card=document.createElement("article");
+card.className="code-card";
+
+const img=document.createElement("img");
+img.src=file.download_url;
+img.alt=file.name;
+img.loading="lazy";
+
+const info=document.createElement("div");
+info.className="code-info";
+
+const title=document.createElement("h3");
+title.textContent=file.name;
+
+const codeText=document.createElement("div");
+codeText.className="code-text";
+codeText.textContent=code;
+
+const button=document.createElement("button");
+button.className="copy-code";
+button.textContent="▣ Copy Code";
+
+button.addEventListener("click",async()=>{
+try{
+await navigator.clipboard.writeText(code);
+button.textContent="✓ Copied!";
+}catch(error){
+const area=document.createElement("textarea");
+area.value=code;
+document.body.appendChild(area);
+area.select();
+document.execCommand("copy");
+area.remove();
+button.textContent="✓ Copied!";
+}
+setTimeout(()=>button.textContent="▣ Copy Code",1500);
+});
+
+info.append(title,codeText,button);
+card.append(img,info);
+box.appendChild(card);
+});
+
+}catch(error){
+box.innerHTML='<p class="status">Codes could not be loaded. Please try again later.</p>';
+}
+}
+
+loadCodes();
+</script>
+
+</body>
+</html>
