@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All VN QR & Templates | ZRX SAMRAT</title>
+<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+.vn-page{max-width:1200px;margin:auto;padding:35px 5%}
+.vn-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.vn-heading h1{font-size:24px;color:var(--gold);margin:0}
+.vn-page>p{font-size:12px;color:var(--muted)}
+.vn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:25px}
+.vn-card{background:#061321;border:1px solid #1d3347;border-radius:12px;overflow:hidden}
+.vn-card img{width:100%;height:230px;object-fit:contain;background:#02080e;display:block}
+.vn-info{padding:13px;text-align:center}
+.vn-info h3{font-size:13px;margin:5px}
+.vn-info p{font-size:10px;color:var(--muted)}
+.vn-info a{display:inline-block;color:var(--gold);font-size:11px;font-weight:800;margin-top:8px}
+.home-link{color:var(--gold);font-size:12px;font-weight:800}
+.instagram-button{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:8px;background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5);color:white;font-size:11px;font-weight:800}
+.instagram-button span{font-size:19px}
+.status{font-size:12px;color:var(--muted);padding:15px}
+@media(max-width:700px){.vn-grid{grid-template-columns:1fr 1fr}.vn-card img{height:170px}}
+@media(max-width:420px){.vn-grid{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<a class="brand" href="./index.html">
+<img src="./logo.jpg" alt="ZRX SAMRAT Logo">
+<div><strong>ZRX SAMRAT</strong><small>Edit Zone</small></div>
+</a>
+<a class="home-link" href="./index.html">← Home</a>
+</header>
+
+<main class="vn-page">
+<div class="vn-heading">
+<h1>✦ All VN QR & Templates</h1>
+<a class="instagram-button" href="https://www.instagram.com/zrx_samrat_w.b/" target="_blank" rel="noopener">
+<span>◎</span> Instagram
+</a>
+</div>
+
+<p>Explore all VN QR codes and video editing templates.</p>
+
+<div id="vn-list" class="vn-grid">
+<p class="status">Loading VN images...</p>
+</div>
+</main>
+
+<footer>
+<div class="footer-brand">
+<span>ZRX SAMRAT <b>Edit Zone</b></span>
+<small>Dream × Edit × Grow</small>
+</div>
+<p>Creative Minds • Better Edits • Bigger Dreams</p>
+</footer>
+
+<script>
+async function loadVN(){
+const box=document.getElementById("vn-list");
+
+try{
+const response=await fetch("./assets/vn/manifest.json?cache="+Date.now());
+if(!response.ok) throw new Error("Manifest not found");
+
+const items=await response.json();
+box.innerHTML="";
+
+if(!items.length){
+box.innerHTML='<p class="status">No VN QR images added yet.</p>';
+return;
+}
+
+items.slice().reverse().forEach((item,index)=>{
+const isObject=typeof item==="object" && item!==null;
+const qr=isObject?item.qr:item;
+const title=isObject?(item.title||"VN QR Template"):"VN QR Template "+(items.length-index);
+const preview=isObject?item.preview:null;
+const description=isObject?(item.description||"Scan or open this VN QR template."):"Scan or open this VN QR template.";
+
+const card=document.createElement("article");
+card.className="vn-card";
+
+const img=document.createElement("img");
+img.src="./assets/vn/"+(preview||qr);
+img.alt=title;
+img.loading="lazy";
+
+const info=document.createElement("div");
+info.className="vn-info";
+
+const heading=document.createElement("h3");
+heading.textContent=title;
+
+const desc=document.createElement("p");
+desc.textContent=description;
+
+const link=document.createElement("a");
+link.href="./assets/vn/"+qr;
+link.target="_blank";
+link.rel="noopener";
+link.textContent="Open VN QR →";
+
+info.append(heading,desc,link);
+card.append(img,info);
+box.appendChild(card);
+});
+
+}catch(error){
+box.innerHTML='<p class="status">VN images could not be loaded. Please try again later.</p>';
+}
+}
+
+loadVN();
+</script>
+
+</body>
+</html>
