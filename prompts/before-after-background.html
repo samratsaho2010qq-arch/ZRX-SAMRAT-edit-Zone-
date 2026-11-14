@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before & After Photo Editing | ZRX SAMRAT</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #100e1c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+    main { max-width: 720px; margin: auto; }
+    h1 { color: #ffc857; }
+    .panel {
+      background: #201b32;
+      border: 1px solid #55436f;
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    textarea {
+      width: 100%;
+      min-height: 420px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #100e1c;
+      color: white;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    button, .back {
+      display: inline-block;
+      padding: 12px 18px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #ffc857;
+      color: #20152b;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #status { color: #b8f7c5; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Before & After Photo Editing</h1>
+  <p>নিজের ছবিকে সুন্দর Background ও Professional Look-এ এডিট করো।</p>
+
+  <section class="panel">
+    <h2>Example Image</h2>
+    <img src="../assets/prompt-showcase-before-after.png"
+         alt="Before and After Photo Editing Example">
+  </section>
+
+  <section class="panel">
+    <h2>AI Photo Editing Prompt</h2>
+    <textarea id="prompt" readonly>Create a professional, high-quality BEFORE & AFTER photo-editing promotional poster using the uploaded photo as the identity reference.
+
+CANVAS AND LAYOUT:
+- Square 1:1 composition, high resolution.
+- Split the canvas vertically into two equal halves with a white torn-paper divider.
+- LEFT SIDE: Keep the original person and original background. Add a red paint-brush banner reading "Before" and "(আগে যেমন ছিল)".
+- RIGHT SIDE: Show the exact same person with the same face, hairstyle, sunglasses, clothing, pose and proportions. Replace only the background with a beautiful lush green garden, soft natural bokeh and bright pink flowers. Add a yellow banner reading "After" and "(Prompts প্রয়োগ করে এডিট করে কেমন হলো)".
+- Add a bold red arrow with a white outline pointing from Before to After.
+- At the top center, add a black brush-stroke brand panel with a small golden crown and the exact text "ZRX SAMRAT" and "edit Zone".
+- At the bottom, add a black brush-stroke banner with "Photo Editing Prompts". Make "Photo Editing" yellow and "Prompts" white.
+- Under it, write "Edit Like a Pro".
+- Add three feature labels with icons: "Better Background", "Enhanced Color", and "More Attractive Look".
+
+IDENTITY AND QUALITY:
+- Preserve the uploaded person's identity and facial features exactly.
+- Keep the same pose, clothes, hairstyle, sunglasses and body proportions on both sides.
+- Change only the background on the After side.
+- Use realistic background replacement, clean subject edges, natural lighting, vibrant colors and professional retouching.
+- Keep all text correctly spelled and readable.
+- Do not add extra words, watermarks, social-media logos or unrelated objects.
+
+OUTPUT:
+A premium, realistic, high-resolution square 1:1 Before & After photo-editing promotional graphic.</textarea>
+
+    <button onclick="copyPrompt()">Copy Prompt</button>
+    <p id="status" aria-live="polite"></p>
+  </section>
+
+  <a class="back" href="../index.html">← Back to Home</a>
+</main>
+
+<script>
+function copyPrompt() {
+  const field = document.getElementById("prompt");
+  const status = document.getElementById("status");
+  field.select();
+  field.setSelectionRange(0, field.value.length);
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(field.value)
+      .then(() => status.textContent = "Prompt copied!")
+      .catch(() => fallbackCopy(field, status));
+  } else {
+    fallbackCopy(field, status);
+  }
+}
+
+function fallbackCopy(field, status) {
+  try {
+    status.textContent = document.execCommand("copy")
+      ? "Prompt copied!"
+      : "লেখাটি সিলেক্ট করে Copy করো।";
+  } catch (error) {
+    status.textContent = "লেখাটি সিলেক্ট করে Copy করো।";
+  }
+}
+</script>
+</body>
+</html>
