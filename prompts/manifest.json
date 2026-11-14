@@ -27,5 +27,12 @@
     "description": "2026 Goodbye ও 2027 New Beginning থিমে Boy এবং Girl—দুটি আলাদা AI Photo Editing Prompt।",
     "file": "new-year-2026-2027.html",
     "image": "prompts/new-year-2026-2027.png"
+  },
+  {
+    "title": "Before & After Background Editing",
+    "category": "AI Photo Editing • Background",
+    "description": "নিজের ছবির Background পরিবর্তন করে সুন্দর Before & After ডিজাইন তৈরি করুন।",
+    "file": "before-after-background.html",
+    "image": "assets/prompt-showcase-before-after.png"
   }
 ]
