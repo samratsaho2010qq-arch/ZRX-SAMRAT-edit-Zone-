@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -40,7 +41,6 @@
 
   <link rel="stylesheet" href="./style.css">
 
-  <!-- Social icon sizing only; existing design remains unchanged -->
   <style>
     .social-head svg,
     .footer-social svg {
@@ -53,6 +53,24 @@
       width: 25px;
       height: 25px;
       display: block;
+    }
+
+    /* Three cards in one row */
+    .vn-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .vn-gallery > * {
+      min-width: 0;
+    }
+
+    @media (max-width: 600px) {
+      .vn-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
     }
   </style>
 </head>
@@ -221,18 +239,35 @@
   </article>
 </section>
 
-<!-- Latest Photo Editing -->
-<section class="vn-section">
-  <div class="vn-heading">
-    <div>
-      <span>▣</span>
-      <h2>Latest Photo Editing</h2>
-      <p>আমার নতুন Photo Editing কাজগুলো দেখুন।</p>
+<!-- Photo Editing Prompt Showcase: moved to the top -->
+<section id="prompt-showcase" class="split-section">
+  <div class="panel prompt-panel">
+    <div class="section-title">
+      <span>✦</span>
+      <h2>Photo Editing Prompt Showcase</h2>
     </div>
-    <a href="./photo-editing.html" class="view-all">View All Photos →</a>
-  </div>
-  <div id="home-photo-gallery" class="vn-gallery">
-    <div class="loading">Loading photos…</div>
+
+    <div class="prompt-content">
+      <div>
+        <label>NEW PHOTO EDITING PROMPT #001</label>
+        <h3>Cinematic Double Exposure Poster</h3>
+
+        <p>
+          নিজের আপলোড করা ছবিকে cinematic double-exposure poster style-এ
+          রূপ দিতে নিচের prompt-টি কপি করে ব্যবহার করুন।
+        </p>
+
+        <textarea id="photo-prompt" readonly rows="10">Transform the uploaded photo into a premium cinematic double-exposure portrait poster. Preserve the person's recognizable facial identity, natural skin tone and key features. Create a large dramatic black-and-white close-up portrait in the upper background, blended artistically with a smaller full-body color portrait of the same person in the lower foreground. Use a moody mountain landscape at sunset, atmospheric haze, subtle film grain, bold teal and muted red paint strokes, deep shadows, realistic lighting, crisp details and professional editorial color grading. Add balanced composition, layered depth and a stylish modern Instagram poster aesthetic. Keep the subject natural and photorealistic. No extra people, no distorted face, no duplicate facial features, no watermark and no unwanted text. Vertical 4:5 poster composition.</textarea>
+
+        <button class="copy" id="copy-photo-prompt" type="button">▣ Copy Prompt</button>
+        <p id="copy-status" aria-live="polite"></p>
+      </div>
+
+      <div class="result-image">
+        <img src="./assets/prompt-showcase-before-after.png" alt="Before and after photo editing example" loading="lazy">
+        <b>Example Result</b>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -266,42 +301,12 @@
   </div>
 </section>
 
-<section id="prompt-showcase" class="split-section">
-  <div class="panel prompt-panel">
-    <div class="section-title">
-      <span>✦</span>
-      <h2>Photo Editing Prompt Showcase</h2>
-    </div>
-
-    <div class="prompt-content">
-      <div>
-        <label>NEW PHOTO EDITING PROMPT #001</label>
-        <h3>Cinematic Double Exposure Poster</h3>
-
-        <p>
-          নিজের আপলোড করা ছবিকে cinematic double-exposure poster style-এ
-          রূপ দিতে নিচের prompt-টি কপি করে ব্যবহার করুন।
-        </p>
-
-        <textarea id="photo-prompt" readonly rows="10">Transform the uploaded photo into a premium cinematic double-exposure portrait poster. Preserve the person's recognizable facial identity, natural skin tone and key features. Create a large dramatic black-and-white close-up portrait in the upper background, blended artistically with a smaller full-body color portrait of the same person in the lower foreground. Use a moody mountain landscape at sunset, atmospheric haze, subtle film grain, bold teal and muted red paint strokes, deep shadows, realistic lighting, crisp details and professional editorial color grading. Add balanced composition, layered depth and a stylish modern Instagram poster aesthetic. Keep the subject natural and photorealistic. No extra people, no distorted face, no duplicate facial features, no watermark and no unwanted text. Vertical 4:5 poster composition.</textarea>
-
-        <button class="copy" id="copy-photo-prompt" type="button">▣ Copy Prompt</button>
-        <p id="copy-status" aria-live="polite"></p>
-      </div>
-
-      <div class="result-image">
-        <img src="./assets/prompt-showcase-before-after.png" alt="Before and after photo editing example" loading="lazy">
-        <b>Example Result</b>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- Latest VN Templates -->
 <section id="vn-qr" class="vn-section">
   <div class="vn-heading">
     <div>
       <span>▶</span>
-      <h2>VN QR & Video Resources</h2>
+      <h2>Latest VN Templates</h2>
       <p>Scan the latest VN QR codes and access editing packs, templates & more.</p>
     </div>
     <a href="./all-vn.html" class="view-all">View All VN QR →</a>
@@ -378,14 +383,14 @@
         <strong>›</strong>
       </a>
 
-      <a href="mailto:samratsaho2010qq@gmail.com">
+      <a href="mailto:samratsaho2010@gmail.com">
         <span class="mail">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="5" width="18" height="14" rx="2"/>
             <path d="m3 7 9 6 9-6"/>
           </svg>
         </span>
-        <div><b>Email</b><small>samratsaho2010qq@gmail.com</small></div>
+        <div><b>Email</b><small>samratsaho2010@gmail.com</small></div>
         <strong>›</strong>
       </a>
     </div>
@@ -416,7 +421,7 @@
     <a href="https://www.facebook.com/share/19byQShxUy/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
     <a href="https://www.youtube.com/@ZRXSAMRAT" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
 
-    <a href="mailto:samratsaho2010qq@gmail.com" aria-label="Email">
+    <a href="mailto:samratsaho2010@gmail.com" aria-label="Email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="5" width="18" height="14" rx="2"/>
         <path d="m3 7 9 6 9-6"/>
@@ -464,5 +469,5 @@
 </script>
 
 </body>
-  </html>
+</html>
   
