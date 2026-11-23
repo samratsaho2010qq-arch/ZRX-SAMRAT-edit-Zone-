@@ -1,3 +1,4 @@
+
 // =====================================
 // ZRX SAMRAT Edit Zone - script.js
 // Latest 3 Items on Homepage
@@ -316,68 +317,175 @@ async function loadVNImages() {
   const box = document.getElementById('vn-gallery');
   if (!box) return;
 
+  const owner = 'samratsaho2010qq-arch';
+  const repo = 'ZRX-SAMRAT-edit-Zone-';
+  const folder = 'assets/vn';
+
   try {
-    const response = await fetch(
-      './assets/vn/manifest.json?cache=' + Date.now()
+    const apiURL =
+      `https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=main`;
+
+    const response = await fetch(apiURL, {
+      headers: {
+        Accept: 'application/vnd.github+json'
+      }
+    });
+
+    if (!response.ok) throw new Error('VN folder unavailable');
+
+    const files = await response.json();
+
+    const imageFiles = files.filter(file =>
+      file.type === 'file' &&
+      /\.(png|jpe?g|webp|gif)$/i.test(file.name)
     );
-
-    if (!response.ok) throw new Error('VN manifest unavailable');
-
-    const items = await response.json();
 
     box.innerHTML = '';
 
-    if (!Array.isArray(items) || items.length === 0) {
+    if (imageFiles.length === 0) {
       box.textContent = 'No VN resources uploaded yet.';
       return;
     }
 
-    items.slice().reverse().slice(0, 3).forEach((entry, index) => {
-      const data = typeof entry === 'string'
-        ? { qr: entry, title: 'VN Template' }
-        : entry;
+    // Separate Preview and QR images
+    const groups = {};
 
-      if (!data || !data.qr) return;
+    imageFiles.forEach(file => {
+      const extension = file.name.match(/\.[^.]+$/)?.[0] || '';
+      const originalName = file.name.replace(/\.[^.]+$/, '');
 
+      const previewMatch = originalName.match(/[-_]preview$/i);
+      const qrMatch = originalName.match(/[-_]qr$/i);
+
+      let type = 'qr';
+      let title = originalName;
+
+      if (previewMatch) {
+        type = 'preview';
+        title = originalName.replace(/[-_]preview$/i, '');
+      } else if (qrMatch) {
+        type = 'qr';
+        title = originalName.replace(/[-_]qr$/i, '');
+      }
+
+      const key = title.toLowerCase();
+
+      if (!groups[key]) {
+        groups[key] = {
+          title: title,
+          preview: null,
+          qr: null
+        };
+      }
+
+      if (type === 'preview') {
+        groups[key].preview = file;
+      } else {
+        groups[key].qr = file;
+      }
+    });
+
+    // Latest items first
+    const items = Object.values(groups)
+      .sort((a, b) => b.title.localeCompare(a.title))
+      .slice(0, 3);
+
+    items.forEach((item, index) => {
       const card = makeCard();
 
       const title = document.createElement('h3');
-      title.textContent = data.title || 'VN Video Template';
+      title.textContent = item.title.replace(/[-_]/g, ' ') || 'VN Template';
+      title.style.cssText = `
+        text-align:center;
+        margin:0 0 14px;
+        color:#ffd27a;
+        font-size:18px;
+      `;
 
-      if (data.preview) {
-        const previewPath = imagePath(data.preview, 'assets/vn/');
-        const previewLink = document.createElement('a');
+      // Two image panels side by side
+      const imageGrid = document.createElement('div');
 
-        previewLink.href = previewPath;
-        previewLink.target = '_blank';
-        previewLink.rel = 'noopener';
+      imageGrid.style.cssText = `
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:9px;
+        width:100%;
+      `;
 
-        previewLink.appendChild(
-          makeImage(previewPath, title.textContent + ' preview', '190px')
-        );
+      function createPanel(label, file, altText) {
+        const panel = document.createElement('div');
 
-        card.appendChild(previewLink);
+        panel.style.cssText = `
+          min-width:0;
+          padding:7px;
+          border-radius:10px;
+          background:#120d1b;
+          border:1px solid #59416d;
+          text-align:center;
+        `;
+
+        const caption = document.createElement('div');
+        caption.textContent = label;
+        caption.style.cssText = `
+          font-size:11px;
+          font-weight:bold;
+          letter-spacing:0.5px;
+          color:#e8a64a;
+          margin:3px 0 8px;
+        `;
+
+        panel.appendChild(caption);
+
+        if (file) {
+          const link = document.createElement('a');
+          link.href = file.download_url;
+          link.target = '_blank';
+          link.rel = 'noopener';
+
+          const img = makeImage(
+            file.download_url,
+            altText,
+            'clamp(110px, 35vw, 170px)'
+          );
+
+          img.style.marginBottom = '0';
+          link.appendChild(img);
+          panel.appendChild(link);
+
+        } else {
+          const missing = document.createElement('div');
+          missing.textContent = 'Not added yet';
+          missing.style.cssText = `
+            height:clamp(110px, 35vw, 170px);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#aaa;
+            font-size:12px;
+            background:#111;
+            border-radius:8px;
+          `;
+          panel.appendChild(missing);
+        }
+
+        return panel;
       }
 
-      const qrTitle = document.createElement('p');
-      qrTitle.textContent = '📱 Scan this VN QR Code';
-
-      const qrPath = imagePath(data.qr, 'assets/vn/');
-      const qrLink = document.createElement('a');
-
-      qrLink.href = qrPath;
-      qrLink.target = '_blank';
-      qrLink.rel = 'noopener';
-
-      qrLink.appendChild(
-        makeImage(qrPath, 'VN QR Code ' + (index + 1), '220px')
+      imageGrid.append(
+        createPanel('PREVIEW', item.preview, 'VN Template Preview'),
+        createPanel('VN QR CODE', item.qr, 'VN QR Code ' + (index + 1))
       );
 
       const description = document.createElement('p');
-      description.textContent =
-        data.description || 'Scan this QR code in VN.';
+      description.textContent = 'Scan the QR code in VN to use this template.';
+      description.style.cssText = `
+        margin:12px 0 0;
+        font-size:13px;
+        color:#ddd;
+        text-align:center;
+      `;
 
-      card.append(title, qrTitle, qrLink, description);
+      card.append(title, imageGrid, description);
       box.appendChild(card);
     });
 
@@ -393,4 +501,4 @@ loadPhotoGallery();
 loadPromptGallery();
 loadPhotoCodesGallery();
 loadVNImages();
-    
+        
