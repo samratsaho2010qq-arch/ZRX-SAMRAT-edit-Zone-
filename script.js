@@ -1,7 +1,6 @@
-
 // =====================================
 // ZRX SAMRAT Edit Zone - script.js
-// Latest 3 Items on Homepage
+// Homepage: Latest 2 VN + Latest 3 Others
 // =====================================
 
 
@@ -312,7 +311,7 @@ async function loadPhotoCodesGallery() {
 }
 
 
-// 6. VN QR & Templates - Latest 3
+// 6. VN QR & Templates - Latest 2
 async function loadVNImages() {
   const box = document.getElementById('vn-gallery');
   if (!box) return;
@@ -351,7 +350,6 @@ async function loadVNImages() {
     const groups = {};
 
     imageFiles.forEach(file => {
-      const extension = file.name.match(/\.[^.]+$/)?.[0] || '';
       const originalName = file.name.replace(/\.[^.]+$/, '');
 
       const previewMatch = originalName.match(/[-_]preview$/i);
@@ -385,10 +383,10 @@ async function loadVNImages() {
       }
     });
 
-    // Latest items first
+    // Show only latest 2 VN templates on homepage
     const items = Object.values(groups)
       .sort((a, b) => b.title.localeCompare(a.title))
-      .slice(0, 3);
+      .slice(0, 2);
 
     items.forEach((item, index) => {
       const card = makeCard();
@@ -501,4 +499,3 @@ loadPhotoGallery();
 loadPromptGallery();
 loadPhotoCodesGallery();
 loadVNImages();
-        
