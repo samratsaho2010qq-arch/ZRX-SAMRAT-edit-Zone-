@@ -14,18 +14,29 @@
 .vn-heading h1{font-size:24px;color:var(--gold);margin:0}
 .vn-page>p{font-size:12px;color:var(--muted)}
 .vn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:25px}
-.vn-card{background:#061321;border:1px solid #1d3347;border-radius:12px;overflow:hidden}
-.vn-card img{width:100%;height:230px;object-fit:contain;background:#02080e;display:block}
-.vn-info{padding:13px;text-align:center}
-.vn-info h3{font-size:13px;margin:5px}
-.vn-info p{font-size:10px;color:var(--muted)}
+.vn-card{background:#061321;border:1px solid #1d3347;border-radius:12px;overflow:hidden;padding:12px}
+.vn-info{padding:10px;text-align:center}
+.vn-info h3{font-size:14px;margin:5px;color:var(--gold)}
+.vn-info p{font-size:11px;color:var(--muted)}
 .vn-info a{display:inline-block;color:var(--gold);font-size:11px;font-weight:800;margin-top:8px}
+.vn-images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.vn-panel{min-width:0;padding:7px;background:#02080e;border:1px solid #1d3347;border-radius:9px;text-align:center}
+.vn-label{font-size:10px;font-weight:800;color:var(--gold);margin:3px 0 8px}
+.vn-panel img{width:100%;height:190px;object-fit:contain;background:#02080e;display:block;border-radius:6px}
+.vn-panel a{display:block}
+.vn-missing{height:190px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:11px}
 .home-link{color:var(--gold);font-size:12px;font-weight:800}
 .instagram-button{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:8px;background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5);color:white;font-size:11px;font-weight:800}
 .instagram-button span{font-size:19px}
 .status{font-size:12px;color:var(--muted);padding:15px}
-@media(max-width:700px){.vn-grid{grid-template-columns:1fr 1fr}.vn-card img{height:170px}}
-@media(max-width:420px){.vn-grid{grid-template-columns:1fr}}
+@media(max-width:700px){
+.vn-grid{grid-template-columns:1fr 1fr}
+.vn-panel img,.vn-missing{height:150px}
+}
+@media(max-width:420px){
+.vn-grid{grid-template-columns:1fr}
+.vn-panel img,.vn-missing{height:160px}
+}
 </style>
 </head>
 
@@ -67,53 +78,143 @@ async function loadVN(){
 const box=document.getElementById("vn-list");
 
 try{
-const response=await fetch("./assets/vn/manifest.json?cache="+Date.now());
-if(!response.ok) throw new Error("Manifest not found");
+const owner="samratsaho2010qq-arch";
+const repo="ZRX-SAMRAT-edit-Zone-";
+const folder="assets/vn";
 
-const items=await response.json();
+const apiURL=`https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=main`;
+
+const response=await fetch(apiURL,{
+headers:{Accept:"application/vnd.github+json"}
+});
+
+if(!response.ok) throw new Error("VN folder unavailable");
+
+const files=await response.json();
+
+const imageFiles=files.filter(file=>
+file.type==="file" &&
+/\.(png|jpe?g|webp|gif)$/i.test(file.name)
+);
+
 box.innerHTML="";
 
-if(!items.length){
+if(imageFiles.length===0){
 box.innerHTML='<p class="status">No VN QR images added yet.</p>';
 return;
 }
 
-items.slice().reverse().forEach((item,index)=>{
-const isObject=typeof item==="object" && item!==null;
-const qr=isObject?item.qr:item;
-const title=isObject?(item.title||"VN QR Template"):"VN QR Template "+(items.length-index);
-const preview=isObject?item.preview:null;
-const description=isObject?(item.description||"Scan or open this VN QR template."):"Scan or open this VN QR template.";
+const groups={};
 
+imageFiles.forEach(file=>{
+const originalName=file.name.replace(/\.[^.]+$/,"");
+
+const previewMatch=originalName.match(/[-_]preview$/i);
+const qrMatch=originalName.match(/[-_]qr$/i);
+
+let type="qr";
+let title=originalName;
+
+if(previewMatch){
+type="preview";
+title=originalName.replace(/[-_]preview$/i,"");
+}else if(qrMatch){
+type="qr";
+title=originalName.replace(/[-_]qr$/i,"");
+}
+
+const key=title.toLowerCase();
+
+if(!groups[key]){
+groups[key]={
+title:title,
+preview:null,
+qr:null
+};
+}
+
+if(type==="preview"){
+groups[key].preview=file;
+}else{
+groups[key].qr=file;
+}
+});
+
+const items=Object.values(groups)
+.sort((a,b)=>b.title.localeCompare(a.title));
+
+items.forEach((item,index)=>{
 const card=document.createElement("article");
 card.className="vn-card";
-
-const img=document.createElement("img");
-img.src="./assets/vn/"+(preview||qr);
-img.alt=title;
-img.loading="lazy";
 
 const info=document.createElement("div");
 info.className="vn-info";
 
 const heading=document.createElement("h3");
-heading.textContent=title;
+heading.textContent=item.title.replace(/[-_]/g," ")||"VN Template";
+
+const images=document.createElement("div");
+images.className="vn-images";
+
+function createPanel(label,file,alt){
+const panel=document.createElement("div");
+panel.className="vn-panel";
+
+const caption=document.createElement("div");
+caption.className="vn-label";
+caption.textContent=label;
+
+panel.appendChild(caption);
+
+if(file){
+const link=document.createElement("a");
+link.href=file.download_url;
+link.target="_blank";
+link.rel="noopener";
+
+const img=document.createElement("img");
+img.src=file.download_url;
+img.alt=alt;
+img.loading="lazy";
+
+link.appendChild(img);
+panel.appendChild(link);
+}else{
+const missing=document.createElement("div");
+missing.className="vn-missing";
+missing.textContent="Not added yet";
+panel.appendChild(missing);
+}
+
+return panel;
+}
+
+images.append(
+createPanel("PREVIEW",item.preview,"VN Template Preview"),
+createPanel("VN QR CODE",item.qr,"VN QR Code "+(index+1))
+);
 
 const desc=document.createElement("p");
-desc.textContent=description;
+desc.textContent="Scan the QR code in VN to use this template.";
 
 const link=document.createElement("a");
-link.href="./assets/vn/"+qr;
+
+if(item.qr){
+link.href=item.qr.download_url;
 link.target="_blank";
 link.rel="noopener";
 link.textContent="Open VN QR →";
+}else{
+link.textContent="QR code not added yet";
+}
 
 info.append(heading,desc,link);
-card.append(img,info);
+card.append(images,info);
 box.appendChild(card);
 });
 
 }catch(error){
+console.error("VN Gallery Error:",error);
 box.innerHTML='<p class="status">VN images could not be loaded. Please try again later.</p>';
 }
 }
